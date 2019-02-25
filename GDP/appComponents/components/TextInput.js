@@ -8,6 +8,8 @@ const myTextInput = (props) => {
                 style={styles.textInput}
                 placeholder={props.placeholder}
                 secureTextEntry={props.secureTextEntry}
+                autoCapitalize={"none"}
+                autoCorrect={false}
             />
        </View>
     );
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     textInput: {
         backgroundColor: '#fff',
         height: 44,
-        borderColor: 'gray',
+        borderColor: '#979797',
         borderWidth: 0.2,
         marginBottom: 10,
         fontSize: 25,
