@@ -5,10 +5,16 @@ import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 
 export default class App extends React.Component {
+  state = {
+    email: '',
+    password: ''
+  };
     static navigationOptions = {
         title: 'Login',
     };
-    
+    navigateToHome = () => {
+      this.props.navigation.navigate('Home')
+    };
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +25,7 @@ export default class App extends React.Component {
         <TextInput
           placeholder={"Password"}
         />
-        <Button>Login</Button>
+        <Button onPress={this.navigateToHome}>Login</Button>
       </View>
     );
   }
