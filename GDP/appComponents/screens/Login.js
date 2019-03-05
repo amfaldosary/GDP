@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
@@ -53,6 +53,9 @@ export default class App extends React.Component {
           onChangeText={(password) => this.setState({ password: password })} 
         />
         <Button onPress={this.navigateToHome}>Login</Button>
+        <TouchableOpacity>
+          <Text style={styles.text}>create new account</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -67,6 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   text: {
+    paddingTop: 5,
     alignSelf: 'center',
   },
 });
