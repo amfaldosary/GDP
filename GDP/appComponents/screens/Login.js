@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-import Button from '../components/Button';
+import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
@@ -40,20 +40,22 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}></Text>
-        <TextInput
-          placeholder={"Email"}
-          onChangeText={(email) => this.setState({ email: email }) }
-        />
-        <TextInput
-          placeholder={"Password"}
-          secureTextEntry={true}
-          onChangeText={(password) => this.setState({ password: password })} 
-        />
-        <Button onPress={this.navigateToHome}>Login</Button>
-        <TouchableOpacity onPress={this.navigateToRegistration}>
-          <Text style={styles.text}>create new account</Text>
-        </TouchableOpacity>
+         <View> 
+            <Text style={styles.text}></Text>
+            <TextInput
+              placeholder={"Email"}
+              onChangeText={(email) => this.setState({ email: email }) }
+            />
+            <TextInput
+              placeholder={"Password"}
+              secureTextEntry={true}
+              onChangeText={(password) => this.setState({ password: password })} 
+            />
+            <MyButton onPress={this.navigateToHome}>Login</MyButton>
+            <TouchableOpacity onPress={this.navigateToRegistration}>
+              <Text style={styles.text}>create new account</Text>
+            </TouchableOpacity>
+          </View>
       </View>
     );
   }
