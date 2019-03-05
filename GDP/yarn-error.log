@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add [react-native-firebase]
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add [react-native-maps]
 
 PATH: 
   /Users/TiD7s/.composer/vendor/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/TiD7s/.composer/vendor/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/[react-native-firebase]: Not found
+  Error: https://registry.yarnpkg.com/[react-native-maps]: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:66255:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:129397:22)
       at Request.emit (events.js:189:13)
@@ -42,6 +42,7 @@ npm manifest:
       "firebase": "^5.8.5",
       "react": "16.5.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+      "react-native-firebase": "^5.2.3",
       "react-native-gesture-handler": "^1.0.16",
       "react-native-maps": "^0.23.0",
       "react-navigation": "^3.3.0",
@@ -4293,6 +4294,11 @@ Lockfile:
     dependencies:
       mimic-fn "^1.0.0"
   
+  opencollective-postinstall@^2.0.0:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+    integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
+  
   opn@^3.0.2:
     version "3.0.3"
     resolved "https://registry.yarnpkg.com/opn/-/opn-3.0.3.tgz#b6d99e7399f78d65c3baaffef1fb288e9b85243a"
@@ -4663,6 +4669,14 @@ Lockfile:
     version "2.2.5"
     resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
     integrity sha1-QHTdY7SXPmOX2c5Q6XtXx3pRjp0=
+  
+  react-native-firebase@^5.2.3:
+    version "5.2.3"
+    resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-5.2.3.tgz#1e7867b32028cad24785b181aa9aba07e3787109"
+    integrity sha512-8XLioEQDSN8o0Uiu1cEb4Y50yC5PvECQjSV/+b6A9TzWmLrrfYwXkUWQH1Rua8OUWXAXCobknV6JQeKa3NsvJA==
+    dependencies:
+      opencollective-postinstall "^2.0.0"
+      prop-types "^15.6.2"
   
   react-native-gesture-handler@1.0.9:
     version "1.0.9"
