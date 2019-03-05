@@ -9,24 +9,22 @@ import firebase from '../../Firebase';
 export default class App extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    password2: '',
   };
     static navigationOptions = {
-        title: 'Login',
-    };
-    navigateToRegistration = () => {
-      this.props.navigation.navigate('Registration')
+        title: 'Registration',
     };
     navigateToHome = () => {
             // this.state.email, this.state.password
-            
-          firebase.auth().signInWithEmailAndPassword('aa@aa.aa','123456')
+        if(this.state.password === this.state.password2){
+          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
           .then(credential => {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
               //TODO: Save User to Redux
               //TODO: navigate to Home
-              this.props.navigation.navigate('Home')
+              this.props.navigation.navigate('Login')
             }
           }).catch(function(error) {
             console.log(error);
@@ -35,7 +33,10 @@ export default class App extends React.Component {
             var errorCode = error.code;
             var errorMessage = error.message;
             // ...
-          });
+          });}
+          else{
+            alert("password doesn't match");
+          }
     };
   render() {
     return (
@@ -50,10 +51,12 @@ export default class App extends React.Component {
           secureTextEntry={true}
           onChangeText={(password) => this.setState({ password: password })} 
         />
-        <Button onPress={this.navigateToHome}>Login</Button>
-        <TouchableOpacity onPress={this.navigateToRegistration}>
-          <Text style={styles.text}>create new account</Text>
-        </TouchableOpacity>
+        <TextInput
+          placeholder={"Confirm Password"}
+          secureTextEntry={true}
+          onChangeText={(password2) => this.setState({ password2: password2 })} 
+        />
+        <Button onPress={this.navigateToHome}>register</Button>
       </View>
     );
   }
