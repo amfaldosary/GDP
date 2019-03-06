@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView from 'react-native-maps'
 
-import Button from '../components/Button';
+import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
@@ -25,10 +25,16 @@ export default class App extends React.Component {
     //   console.log(key);
     // });
     return (
-      <MapView style={{flex: 1}}
-        followsUserLocation
-        showsUserLocation
-      />
+      <View style={styles.container}>
+        <MapView style={styles.map}
+          followsUserLocation
+          showsUserLocation>
+          <View style={styles.button1}>
+            <MyButton>Service</MyButton>
+            <MyButton>Emergency</MyButton>
+          </View>
+        </MapView>
+      </View>
     );
   }
 }
@@ -36,12 +42,25 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eff',
-    alignItems: 'center',
+    padding: 50,
     justifyContent: 'center',
-    alignItems: 'stretch',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
   text: {
     alignSelf: 'center',
   },
+  button1: {
+    flex: 2,
+    position: 'absolute',
+    bottom: '10%',
+    width: '100%',
+  },
+  button2: {
+    position: 'absolute',
+    bottom: '10%',
+    width: '100%',
+  }
 });
