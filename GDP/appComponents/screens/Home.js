@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import MapView from 'react-native-maps'
 
 import MyButton from '../components/Button';
@@ -9,10 +9,16 @@ import firebase from '../../Firebase';
 export default class App extends React.Component {
     static navigationOptions = {
         title: 'Home',
-
+        headerRight: (
+          <Button
+            onPress={() => alert('This is a button!')}
+            title="Profile"
+            color="#000"
+          />
+        ),
     };
-    navigateToHome = () => {
-      this.props.navigation.navigate('Home')
+    navigateToService = () => {
+      this.props.navigation.navigate('Service')
     };
   render() {
     // // firebase
@@ -30,7 +36,7 @@ export default class App extends React.Component {
           followsUserLocation
           showsUserLocation>
           <View style={styles.button1}>
-            <MyButton>Service</MyButton>
+            <MyButton onPress={this.navigateToService}>Service</MyButton>
             <MyButton>Emergency</MyButton>
           </View>
         </MapView>
