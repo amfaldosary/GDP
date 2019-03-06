@@ -32,10 +32,11 @@ export default class App extends React.Component {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
+            alert(error.message);
             // ...
           });}
           else{
-            alert("password doesn't match");
+            alert("Password doesn't match");
           }
     };
   render() {
