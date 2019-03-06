@@ -11,8 +11,8 @@ export default class App extends React.Component {
         title: 'Home',
 
     };
-    navigateToHome = () => {
-      this.props.navigation.navigate('Home')
+    navigateToService = () => {
+      this.props.navigation.navigate('Service')
     };
   render() {
     // // firebase
@@ -30,7 +30,7 @@ export default class App extends React.Component {
           followsUserLocation
           showsUserLocation>
           <View style={styles.button1}>
-            <MyButton>Service</MyButton>
+            <MyButton onPress={this.navigateToService}>Service</MyButton>
             <MyButton>Emergency</MyButton>
           </View>
         </MapView>
