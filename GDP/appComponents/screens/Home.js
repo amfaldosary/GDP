@@ -11,7 +11,7 @@ export default class App extends React.Component {
         title: 'Home',
         headerRight: (
           <Button
-            onPress={() => alert('This is a button!')}
+            onPress={() => alert('ما سويناه للحين')}
             title="Profile"
             color="#000"
           />
@@ -35,7 +35,7 @@ export default class App extends React.Component {
         <MapView style={styles.map}
           followsUserLocation
           showsUserLocation>
-          <View style={styles.button1}>
+          <View>
             <MyButton onPress={this.navigateToService}>Service</MyButton>
             <MyButton>Emergency</MyButton>
           </View>
@@ -48,7 +48,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
