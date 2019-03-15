@@ -20,13 +20,17 @@ export default class App extends React.Component {
     navigateToHome = () => {
             // this.state.email, this.state.password
             
-          firebase.auth().signInWithEmailAndPassword('aa@aa.aa','123456')
+          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
           .then(credential => {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
               //TODO: Save User to Redux
               //TODO: navigate to Home
-              this.props.navigation.navigate('Home')
+              if(this.state.email === 'driver@app.com'){
+                this.props.navigation.navigate('Driver')
+              }else{
+                this.props.navigation.navigate('Home')
+              }
             }
           }).catch(function(error) {
             console.log(error);
