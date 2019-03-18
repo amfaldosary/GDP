@@ -34,8 +34,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <MapView style={styles.map}
           followsUserLocation
-          showsUserLocation>
-        </MapView>
+          showsUserLocation/>
       </View>
     );
   }
