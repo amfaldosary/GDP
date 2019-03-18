@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import MapView from 'react-native-maps'
 
 import MyButton from '../components/Button';
@@ -10,7 +10,14 @@ export default class App extends React.Component {
     static navigationOptions = {
         title: 'Home',
 
-    };
+        headerRight: (
+          <Button
+            onPress={() => alert('This is a button!')}
+            title="Profile"
+            color="#000"
+          />
+        )
+        };
     navigateToHome = () => {
       this.props.navigation.navigate('Home')
     };
@@ -29,11 +36,14 @@ export default class App extends React.Component {
         <MapView style={styles.map}
           followsUserLocation
           showsUserLocation>
-          <View style={styles.button1}>
-            <MyButton>Service</MyButton>
-            <MyButton>Emergency</MyButton>
-          </View>
-        </MapView>
+          
+        
+            <MyButton style={styles.button1}> Service</MyButton>
+            
+            
+            <MyButton style={styles.button2} >Emergency</MyButton>
+           
+           </MapView>
       </View>
     );
   }
@@ -41,7 +51,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     padding: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -53,14 +63,38 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   button1: {
-    flex: 2,
     position: 'absolute',
-    bottom: '10%',
-    width: '100%',
+    bottom: '11%',
+    width: '90%',
+   
   },
   button2: {
     position: 'absolute',
-    bottom: '10%',
-    width: '100%',
-  }
+    bottom: '5%',
+    width: '90%',
+  },
+
+  button: {
+    flex:1,
+    color:'#fff',
+    position: 'absolute',
+    borderRadius: 12,
+    bottom: 50,
+    width: '90%',
+    
+  },
+  ServiceButton: {
+    backgroundColor: '#964d4d',
+    position: 'absolute',
+    borderRadius: 12,
+    bottom: '11%',
+    width: '90%',
+  },
+  EmergencyButton: {
+    backgroundColor: '#964d4d',
+    position: 'absolute',
+    borderRadius: 12,
+    bottom: '5%',
+    width: '90%',
+  },
 });

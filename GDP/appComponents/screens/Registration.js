@@ -41,22 +41,31 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}></Text>
+        <Text style={styles.text}>Email</Text>
+        <View style={styles.textInput}>
         <TextInput
           placeholder={"Email"}
           onChangeText={(email) => this.setState({ email: email }) }
-        />
+        /></View>
+        <Text style={styles.text}>Password</Text>
+        <View style={styles.textInput}>
         <TextInput
           placeholder={"Password"}
           secureTextEntry={true}
           onChangeText={(password) => this.setState({ password: password })} 
-        />
+        /></View>
+        <Text style={styles.text}>Confirm Password</Text>
+        <View style={styles.textInput}>
         <TextInput
           placeholder={"Confirm Password"}
           secureTextEntry={true}
           onChangeText={(password2) => this.setState({ password2: password2 })} 
-        />
-        <Button onPress={this.navigateToHome}>register</Button>
+        /></View>
+        <View style={styles.M}>
+        <View style={styles.button}>
+        <Button onPress={this.navigateToHome}>Register</Button>
+        </View>
+        </View>
       </View>
     );
   }
@@ -65,13 +74,45 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eff',
+    backgroundColor: '#964d4d',
     alignItems: 'center',
     justifyContent: 'center',
     alignItems: 'stretch',
   },
   text: {
-    paddingTop: 5,
-    alignSelf: 'center',
+    //paddingTop: 0,
+      //alignSelf: 'center',
+      width: '100%',
+      fontSize: 35,
+      color: '#fff',
+      marginHorizontal:10,
+      marginTop:10, 
+      fontWeight: 'bold',
   },
+
+  button: {
+    backgroundColor: '#979797',
+    //marginTop: 10,
+    //height: 35,
+    //marginHorizontal: 10,
+    borderRadius: 12,
+    width:250,
+    alignSelf: 'center',
+    //justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInput: {
+    backgroundColor: '#fff',
+    height: 44,
+    width: 340,
+    //borderColor: 'gray',
+    //borderWidth: 1,
+    marginHorizontal:10,
+    //marginBottom: 15,
+    borderRadius: 12,
+    marginTop:30,
+},
+M:{
+  marginTop:40,
+},
 });
