@@ -5,7 +5,6 @@ import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
-
 export default class App extends React.Component {
   state = {
     email: '',
@@ -17,6 +16,8 @@ export default class App extends React.Component {
     navigateToRegistration = () => {
       this.props.navigation.navigate('Registration')
     };
+
+
     navigateToHome = () => {
             // this.state.email, this.state.password
             
