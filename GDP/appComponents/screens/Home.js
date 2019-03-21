@@ -21,15 +21,6 @@ export default class App extends React.Component {
       this.props.navigation.navigate('Service')
     };
   render() {
-    // // firebase
-    // let placesRef = firebase.database().ref("places/");
-    // console.log("#####");
-    // console.log(placesRef);
-    // console.log("#####");
-    // placesRef.once("value").then(function(snapshot) {
-    //   var key = snapshot
-    //   console.log(key);
-    // });
     return (
       <View style={styles.container}>
         <MapView style={styles.map}

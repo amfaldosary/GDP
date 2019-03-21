@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
-
+import { app } from 'firebase';
 
 export default class App extends React.Component {
   state = {
@@ -17,6 +17,7 @@ export default class App extends React.Component {
     navigateToRegistration = () => {
       this.props.navigation.navigate('Registration')
     };
+
     navigateToHome = () => {
             // this.state.email, this.state.password
             

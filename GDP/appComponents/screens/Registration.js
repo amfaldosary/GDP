@@ -5,10 +5,12 @@ import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
-
 export default class App extends React.Component {
   state = {
+    Fname: '',
+    Lname: '',
     email: '',
+    Phone: '',
     password: '',
     password2: '',
   };
@@ -23,8 +25,17 @@ export default class App extends React.Component {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
               //TODO: Save User to Redux
-              //TODO: navigate to Home
-              this.props.navigation.navigate('Login')
+              firebase.database().ref('users/002').set(
+                {
+                  Fname: this.state.Fname,
+                  Lname: this.state.Lname,
+                  Phone: this.state.Phone,
+                  email: this.state.email,
+                }
+              ).then(() => {
+                this.props.navigation.navigate('Information')
+              });
+              
             }
           }).catch(function(error) {
             console.log(error);
@@ -43,6 +54,18 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}></Text>
+        <TextInput
+          placeholder={"first name"}
+          onChangeText={(Fname) => this.setState({ Fname: Fname }) }
+        />
+        <TextInput
+          placeholder={"Lname"}
+          onChangeText={(Lname) => this.setState({ Lname: Lname }) }
+        />
+        <TextInput
+          placeholder={"Phone number"}
+          onChangeText={(Phone) => this.setState({ Phone: Phone }) }
+        />
         <TextInput
           placeholder={"Email"}
           onChangeText={(email) => this.setState({ email: email }) }
