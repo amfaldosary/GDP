@@ -13,8 +13,6 @@ export default class App extends React.Component {
     Phone: '',
     password: '',
     password2: '',
-    user: 'user/'+Counter,
-    Counter: 001
   };
     static navigationOptions = {
         title: 'Registration',
@@ -27,7 +25,7 @@ export default class App extends React.Component {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
               //TODO: Save User to Redux
-              firebase.database().ref('user/').set(
+              firebase.database().ref('users/002').set(
                 {
                   Fname: this.state.Fname,
                   Lname: this.state.Lname,
@@ -35,9 +33,8 @@ export default class App extends React.Component {
                   email: this.state.email,
                 }
               ).then(() => {
-                this.state.Counter++;
                 this.props.navigation.navigate('Information')
-              })
+              });
               
             }
           }).catch(function(error) {
