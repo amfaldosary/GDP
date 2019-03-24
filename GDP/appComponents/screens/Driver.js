@@ -20,6 +20,14 @@ export default class App extends React.Component {
     navigateToService = () => {
       this.props.navigation.navigate('Service')
     };
+    emergency = () => {
+      firebase.database().ref('order/').once('value' ,function (snapshot){
+        alert(snapshot.val());
+        console.log(snapshot.val());
+      }).then(() => {
+        firebase.database().ref('order/').remove();
+      });
+    };
   render() {
     // // firebase
     // let placesRef = firebase.database().ref("places/");
@@ -30,11 +38,14 @@ export default class App extends React.Component {
     //   var key = snapshot
     //   console.log(key);
     // });
+    
     return (
       <View style={styles.container}>
         <MapView style={styles.map}
           followsUserLocation
-          showsUserLocation/>
+          showsUserLocation>
+          <MyButton onPress={this.emergency}>refresh</MyButton>
+          </MapView>
       </View>
     );
   }

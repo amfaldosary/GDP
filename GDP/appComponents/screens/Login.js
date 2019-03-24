@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
-import { app } from 'firebase';
 
 export default class App extends React.Component {
   state = {
@@ -20,8 +19,8 @@ export default class App extends React.Component {
 
     navigateToHome = () => {
             // this.state.email, this.state.password
-            
-          firebase.auth().signInWithEmailAndPassword('aa@aa.aa', '123456')
+            // 'aa@aa.aa', '123456'
+          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
           .then(credential => {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());

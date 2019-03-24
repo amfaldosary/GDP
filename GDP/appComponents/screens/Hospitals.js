@@ -3,35 +3,27 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button} from 'rea
 
 import firebase from '../../Firebase';
 
-class Greeting extends React.Component {
-    render() {
-      return (
-        <View style={{alignItems: 'center'}}>
-          <Text>Hello {this.props.name}!</Text>
-        </View>
-      );
-    }
-  }
 export default class App extends React.Component {
     state = {
-        value1: '',
+        value1: 'hey',
         value2: '',
         value3: '',
-    }
-    load = () => {
-        firebase.database().ref('location/hospital/001/name').once('value' ,function (snapshot){
-             console.log('###############');
-             console.log(snapshot.val());
-            //return (data.toJSON);
-            let value5= snapshot.val();
-            //this.state.value1 = (snapshot.val());
-        })
-    }
+    };
+    
     render() {
+        firebase.database().ref('location/hospital/001/name').once('value' ,function (snapshot){
+            console.log('###############');
+            console.log(snapshot.val());
+           //return (data.toJSON);
+           //const value5= snapshot.val();
+           //this.state.value1 = (snapshot.val());
+           
+       });
+       
         return (
             <ScrollView style={styles.container}>
-                <Greeting name={this.value5} />
-                <Button onPress={this.load} title={'yes'} />
+                <Text>this is {this.state.value1}</Text>
+                
             </ScrollView>
         );
       }
