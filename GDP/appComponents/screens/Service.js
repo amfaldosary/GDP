@@ -5,7 +5,6 @@ import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
-
 export default class App extends React.Component {
   state = {
     email: '',
@@ -14,13 +13,13 @@ export default class App extends React.Component {
     static navigationOptions = {
         title: 'Service',
     };
-    navigateToRegistration = () => {
-      this.props.navigation.navigate('Registration')
+    navigateToHospitals = () => {
+      this.props.navigation.navigate('Hospitals')
     };
   render() {
     return (
       <View style={styles.container}>
-            <MyButton style={styles.Bu}>Hospital</MyButton>
+            <MyButton style={styles.Bu} onPress={this.navigateToHospitals}>Hospital</MyButton>
             <MyButton style={styles.Bu}>Clinic</MyButton>
             <MyButton style={styles.Bu}>Pharmacy</MyButton>
             <MyButton style={styles.Bu}>Other</MyButton>

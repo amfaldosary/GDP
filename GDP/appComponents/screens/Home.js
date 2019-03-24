@@ -20,6 +20,14 @@ export default class App extends React.Component {
     navigateToService = () => {
       this.props.navigation.navigate('Service')
     };
+    emergency = () => {
+      firebase.database().ref('order/').set({
+        user_id: '',
+        PICKUP_long: '',
+        PICKUP_lat: '',
+
+      }).then(() => { });
+    };
   render() {
     return (
       <View style={styles.container}>
@@ -28,7 +36,7 @@ export default class App extends React.Component {
           showsUserLocation>
           <View>
             <MyButton onPress={this.navigateToService}>Service</MyButton>
-            <MyButton>Emergency</MyButton>
+            <MyButton onPress={this.emergency}>Emergency</MyButton>
           </View>
         </MapView>
       </View>
