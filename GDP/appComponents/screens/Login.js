@@ -20,7 +20,7 @@ export default class App extends React.Component {
     navigateToHome = () => {
             // this.state.email, this.state.password
             // 'aa@aa.aa', '123456'
-          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+          firebase.auth().signInWithEmailAndPassword('aa@aa.aa', '123456')
           .then(credential => {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
