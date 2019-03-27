@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity , Image } from 'react-native';
 
 import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
@@ -20,7 +20,7 @@ export default class App extends React.Component {
     navigateToHome = () => {
             // this.state.email, this.state.password
             // 'aa@aa.aa', '123456'
-          firebase.auth().signInWithEmailAndPassword('aa@aa.aa', '123456')
+          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
           .then(credential => {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
@@ -45,14 +45,16 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
          <View> 
-            <Text style={styles.text}></Text>
+            <Text style={styles.text1}>Email</Text>
             <TextInput
-              placeholder={"Email"}
+              placeholder={"Enter Your Email"}
               onChangeText={(email) => this.setState({ email: email }) }
             />
+               <Text style={styles.text1}>Password</Text>
             <TextInput
-              placeholder={"Password"}
+              placeholder={"Enter Your Password"}
               secureTextEntry={true}
               onChangeText={(password) => this.setState({ password: password })} 
             />
@@ -69,7 +71,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eff',
+    backgroundColor: '#964d4d',
     alignItems: 'center',
     justifyContent: 'center',
     alignItems: 'stretch',
@@ -78,4 +80,20 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     alignSelf: 'center',
   },
+  text1: {
+     left:75,
+     fontSize: 22,
+     color:'#fff'
+
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#67BEFD',
+    padding: 30,
+    marginHorizontal: 10,
+    borderWidth:1,
+    borderRadius:12,
+    marginTop: 100,
+    left: 1  
+},
 });

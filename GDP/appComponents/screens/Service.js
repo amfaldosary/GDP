@@ -19,10 +19,18 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-            <MyButton style={styles.Bu} onPress={this.navigateToHospitals}>Hospital</MyButton>
-            <MyButton style={styles.Bu}>Clinic</MyButton>
-            <MyButton style={styles.Bu}>Pharmacy</MyButton>
+      <View style={styles.spa}>
+        <MyButton style={styles.Bu} onPress={this.navigateToHospitals}>Hospital</MyButton>
+      </View> 
+      <View style={styles.spa}>
+        <MyButton style={styles.Bu}>Clinic</MyButton>
+     </View>
+     <View style={styles.spa}>
+         <MyButton style={styles.Bu}>Pharmacy</MyButton>
+     </View>
+     <View style={styles.spa}>
             <MyButton style={styles.Bu}>Other</MyButton>
+      </View>
       </View>
     );
   }
@@ -31,7 +39,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eff',
+    backgroundColor: '#964d4d',
     alignItems: 'center',
     justifyContent: 'center',
     alignItems: 'stretch',
@@ -44,4 +52,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     alignSelf: 'center',
   },
+  spa: {
+    marginTop: 20,
+  }
 });
