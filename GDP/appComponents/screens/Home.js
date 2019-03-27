@@ -23,7 +23,7 @@ export default class App extends React.Component {
     emergency = () => {
       firebase.database().ref('order/').set({
         user_id: '',
-        PICKUP_long: '',
+        PICKUP_long: JSON.stringify(position.coords.longitude),
         PICKUP_lat: '',
 
       }).then(() => { });

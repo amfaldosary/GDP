@@ -6,28 +6,37 @@ import MyButton from '../components/Button';
 
 export default class App extends React.Component {
   static navigationOptions = {
-    title: 'Hospitals',
+    title: 'Clinics',
 };
     constructor(props) {
       super(props);
       this.state = {
-        hospitals: [],
+        Clinics: [],
         loaded: false
       };
 
       this.getValue()
     }
     getValue = () => {
-      firebase.database().ref('location/hospital/').once('value')
+      firebase.database().ref('location/clinic/').once('value')
       .then((snapshot) => {
-      var hospitalsArray = [];
+      var ClinicsArray = [];
   
        snapshot.forEach((item) => {
-            hospitalsArray.push(item.val())
+        ClinicsArray.push(item.val())
          });
-         this.setState({hospitals: hospitalsArray, loaded: true})
+         this.setState({Clinics: ClinicsArray, loaded: true})
        })
        .catch(error => console.log('#####################', error))
+    };
+
+    renderListItem = (item) => {
+      console.log('################## MHA ITEM', item)
+      return (
+        <View>
+          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
+        </View>
+      )
     };
 
     passingToOrder = (item) => {
@@ -40,20 +49,11 @@ export default class App extends React.Component {
         console.log('####### passed');
       });
     };
-    renderListItem = (item) => {
-      console.log('################## MHA ITEM', item)
-      return (
-        <View>
-          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
-        </View>
-      )
-    }
-    
     render() {
         return (
             <ScrollView style={styles.container}>
                 <FlatList
-                  data={this.state.hospitals}
+                  data={this.state.Clinics}
                   renderItem={({item}) => this.renderListItem(item)}
                   keyExtractor={(item, index) => item.name}
                 />

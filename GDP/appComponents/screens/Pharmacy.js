@@ -6,30 +6,39 @@ import MyButton from '../components/Button';
 
 export default class App extends React.Component {
   static navigationOptions = {
-    title: 'Hospitals',
+    title: 'Pharmacies',
 };
     constructor(props) {
       super(props);
       this.state = {
-        hospitals: [],
+        Pharmacies: [],
         loaded: false
       };
 
       this.getValue()
     }
     getValue = () => {
-      firebase.database().ref('location/hospital/').once('value')
+      firebase.database().ref('location/pharmacy/').once('value')
       .then((snapshot) => {
-      var hospitalsArray = [];
+      var PharmaciesArray = [];
   
        snapshot.forEach((item) => {
-            hospitalsArray.push(item.val())
+        PharmaciesArray.push(item.val())
          });
-         this.setState({hospitals: hospitalsArray, loaded: true})
+         this.setState({Pharmacies: PharmaciesArray, loaded: true})
        })
        .catch(error => console.log('#####################', error))
     };
 
+    renderListItem = (item) => {
+      console.log('################## MHA ITEM', item)
+      return (
+        <View>
+          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
+        </View>
+      )
+    }
+    
     passingToOrder = (item) => {
       firebase.database().ref('order/').set({
         user_id: '',
@@ -40,20 +49,11 @@ export default class App extends React.Component {
         console.log('####### passed');
       });
     };
-    renderListItem = (item) => {
-      console.log('################## MHA ITEM', item)
-      return (
-        <View>
-          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
-        </View>
-      )
-    }
-    
     render() {
         return (
             <ScrollView style={styles.container}>
                 <FlatList
-                  data={this.state.hospitals}
+                  data={this.state.Pharmacies}
                   renderItem={({item}) => this.renderListItem(item)}
                   keyExtractor={(item, index) => item.name}
                 />
