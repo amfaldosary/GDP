@@ -20,17 +20,22 @@ export default class App extends React.Component {
     getValue = () => {
       firebase.database().ref('location/hospital/').once('value')
       .then((snapshot) => {
+      console.log("###########");
+      console.log("Fetch from firebase #_#");
+      console.log("###########");
       var hospitalsArray = [];
-  
-       snapshot.forEach((item) => {
+        console.log(snapshot.numChildren())
+        snapshot.forEach((item) => {
             hospitalsArray.push(item.val())
          });
+         console.log(hospitalsArray.length);
          this.setState({hospitals: hospitalsArray, loaded: true})
        })
        .catch(error => console.log('#####################', error))
     };
 
     passingToOrder = (item) => {
+      console.log(item);
       firebase.database().ref('order/').set({
         user_id: '',
         Destination: item.name,
@@ -44,7 +49,7 @@ export default class App extends React.Component {
       console.log('################## MHA ITEM', item)
       return (
         <View>
-          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
+          <MyButton onPress={()=> this.passingToOrder(item)}>{item.name}</MyButton>
         </View>
       )
     }

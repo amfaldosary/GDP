@@ -34,7 +34,7 @@ export default class App extends React.Component {
       console.log('################## MHA ITEM', item)
       return (
         <View>
-          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
+          <MyButton onPress={()=> this.passingToOrder(item)}>{item.name}</MyButton>
         </View>
       )
     }
