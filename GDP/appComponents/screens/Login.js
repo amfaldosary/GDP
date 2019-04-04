@@ -48,13 +48,15 @@ class LogIn extends React.Component {
           this.props.onLogin(this.state.email, this.state.password).then(res => {
             console.log("logIn");
             console.log(res);
-            if(res){
-              if(res.email === 'driver@app.com'){
+            
+              if(this.props.user.email === "driver@app.com"){
+                console.log('taking you to driver');
                 this.props.navigation.navigate('Driver')
               }else{
+                console.log('taking you home');
                 this.props.navigation.navigate('Home')
               }
-            }
+            
           });
     };
   render() {

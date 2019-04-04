@@ -8,7 +8,7 @@ import firebase from '../../Firebase';
 
 export default class App extends React.Component {
   static navigationOptions = (context)=> ({
-    title: 'Home',
+    title: 'Driver',
     headerRight: (
       <Button
         onPress={() => context.navigation.navigate("Profile") }
@@ -25,7 +25,7 @@ export default class App extends React.Component {
     };
     emergency = () => {
       firebase.database().ref('order/').once('value' ,function (snapshot){
-        alert(snapshot.val());
+        alert(snapshot.user_id);
         console.log(snapshot.val());
       }).then(() => {
         firebase.database().ref('order/').remove();
@@ -47,7 +47,7 @@ export default class App extends React.Component {
         <MapView style={styles.map}
           followsUserLocation
           showsUserLocation>
-          <MyButton onPress={this.emergency}>refresh</MyButton>
+          <MyButton onPress={this.emergency}>get emergency</MyButton>
           </MapView>
       </View>
     );

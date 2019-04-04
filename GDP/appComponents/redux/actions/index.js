@@ -10,7 +10,7 @@ import firebase from '../../../Firebase';
 
 export function login (email, password) {
     return function action(dispatch) {
-        return firebase.auth().signInWithEmailAndPassword('aa@aa.aa', '123456')
+        return firebase.auth().signInWithEmailAndPassword(email,password)
         .then(credential => {
           if (credential) {
             console.log(credential);

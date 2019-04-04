@@ -16,6 +16,7 @@ class Profile extends React.Component {
     console.log("==========");
     return (
       <View style={styles.container}>
+        <Text>{this.props.user.uid}</Text>
         <Text>{this.props.user.phoneNumber}</Text>
         <Text>{this.props.user.photoURL}</Text>
         <Text>{this.props.user.displayName}</Text>
