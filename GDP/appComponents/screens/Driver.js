@@ -7,22 +7,25 @@ import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
 export default class App extends React.Component {
-    static navigationOptions = {
-        title: 'Driver',
-        headerRight: (
-          <Button
-            onPress={() => alert('ما سويناه للحين')}
-            title="Profile"
-            color="#000"
-          />
-        ),
-    };
+  static navigationOptions = (context)=> ({
+    title: 'Driver',
+    headerRight: (
+      <Button
+        onPress={() => context.navigation.navigate("Profile") }
+        title="Profile"
+        color="#000"
+      />
+    ),
+    headerLeft: (
+      <View></View>
+    ),
+});
     navigateToService = () => {
       this.props.navigation.navigate('Service')
     };
     emergency = () => {
       firebase.database().ref('order/').once('value' ,function (snapshot){
-        alert(snapshot.val());
+        alert(snapshot.user_id);
         console.log(snapshot.val());
       }).then(() => {
         firebase.database().ref('order/').remove();
@@ -44,7 +47,7 @@ export default class App extends React.Component {
         <MapView style={styles.map}
           followsUserLocation
           showsUserLocation>
-          <MyButton onPress={this.emergency}>refresh</MyButton>
+          <MyButton onPress={this.emergency}>get emergency</MyButton>
           </MapView>
       </View>
     );

@@ -9,6 +9,7 @@ import Driver from '../screens/Driver';
 import Hospitals from '../screens/Hospitals';
 import Clinics from '../screens/Clinics';
 import Pharmacy from '../screens/Pharmacy';
+import Profile from '../screens/Profile';
 
 const AppNavigator = createStackNavigator({
     Login: { screen: Login },
@@ -19,6 +20,7 @@ const AppNavigator = createStackNavigator({
     Hospitals: { screen: Hospitals },
     Clinics: { screen: Clinics },
     Pharmacy: { screen: Pharmacy },
+    Profile: { screen: Profile },
   });
   
   export default createAppContainer(AppNavigator);

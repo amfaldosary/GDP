@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, FlatList, Text, View, TouchableOpacity, ScrollView, Button} from 'react-native';
-
+import {connect} from 'react-redux';
 import firebase from '../../Firebase';
 import MyButton from '../components/Button';
 
-export default class App extends React.Component {
+class Hospitals extends React.Component {
   static navigationOptions = {
     title: 'Hospitals',
 };
@@ -20,19 +20,24 @@ export default class App extends React.Component {
     getValue = () => {
       firebase.database().ref('location/hospital/').once('value')
       .then((snapshot) => {
+      console.log("###########");
+      console.log("Fetch from firebase #_#");
+      console.log("###########");
       var hospitalsArray = [];
-  
-       snapshot.forEach((item) => {
+        console.log(snapshot.numChildren())
+        snapshot.forEach((item) => {
             hospitalsArray.push(item.val())
          });
+         console.log(hospitalsArray.length);
          this.setState({hospitals: hospitalsArray, loaded: true})
        })
        .catch(error => console.log('#####################', error))
     };
 
     passingToOrder = (item) => {
+      console.log(item);
       firebase.database().ref('order/').set({
-        user_id: '',
+        user_id: this.props.user.email,
         Destination: item.name,
         PICKUP_long: item.long,
         PICKUP_lat: item.lat,
@@ -44,7 +49,7 @@ export default class App extends React.Component {
       console.log('################## MHA ITEM', item)
       return (
         <View>
-          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
+          <MyButton onPress={()=> this.passingToOrder(item)}>{item.name}</MyButton>
         </View>
       )
     }
@@ -72,3 +77,11 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
     },
   });
+
+
+  const mapStateToProps = state => {
+    console.log(state);
+    return {user: state.user};
+  }
+  
+  export default connect(mapStateToProps)(Hospitals);

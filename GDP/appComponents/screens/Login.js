@@ -1,11 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-
+import {login} from '../redux/actions';
+import {connect} from 'react-redux';
 import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
-export default class App extends React.Component {
+
+
+class LogIn extends React.Component {
   state = {
     email: '',
     password: ''
@@ -20,26 +23,40 @@ export default class App extends React.Component {
     navigateToHome = () => {
             // this.state.email, this.state.password
             // 'aa@aa.aa', '123456'
-          firebase.auth().signInWithEmailAndPassword('aa@aa.aa', '123456')
-          .then(credential => {
-            if (credential) {
-              console.log('default app user ->', credential.user.toJSON());
-              //TODO: Save User to Redux
-              //TODO: navigate to Home
-              if(this.state.email === 'driver@app.com'){
+          // firebase.auth().signInWithEmailAndPassword('aa@aa.aa', '123456')
+          // .then(credential => {
+          //   if (credential) {
+          //     console.log('default app user ->', credential.user.toJSON());
+          //     //TODO: Save User to Redux
+          //     //TODO: navigate to Home
+          //     if(this.state.email === 'driver@app.com'){
+          //       this.props.navigation.navigate('Driver')
+          //     }else{
+          //       this.props.navigation.navigate('Home')
+          //     }
+          //   }
+          // }).catch(function(error) {
+          //   console.log(error);
+          //   //TODO: add alert for errors.
+          //   // Handle Errors here.
+          //   var errorCode = error.code;
+          //   var errorMessage = error.message;
+          //   alert(error.message);
+             
+          // });
+
+          this.props.onLogin(this.state.email, this.state.password).then(res => {
+            console.log("logIn");
+            console.log(res);
+            
+              if(this.props.user.email === "driver@app.com"){
+                console.log('taking you to driver');
                 this.props.navigation.navigate('Driver')
               }else{
+                console.log('taking you home');
                 this.props.navigation.navigate('Home')
               }
-            }
-          }).catch(function(error) {
-            console.log(error);
-            //TODO: add alert for errors.
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert(error.message);
-             
+            
           });
     };
   render() {
@@ -79,3 +96,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+const mapDispatchToProps = dispatch => ({
+  onLogin: (email, password)=> {
+    return dispatch(login(email, password));
+  }
+});
+
+const mapStateToProps = (state)=> {
+  return {user: state.user};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

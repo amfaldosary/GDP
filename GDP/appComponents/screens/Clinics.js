@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, FlatList, Text, View, TouchableOpacity, ScrollView, Button} from 'react-native';
-
+import {connect} from 'react-redux';
 import firebase from '../../Firebase';
 import MyButton from '../components/Button';
 
-export default class App extends React.Component {
+class Clinics extends React.Component {
   static navigationOptions = {
     title: 'Clinics',
 };
@@ -34,14 +34,14 @@ export default class App extends React.Component {
       console.log('################## MHA ITEM', item)
       return (
         <View>
-          <MyButton onPress={this.passingToOrder(item)}>{item.name}</MyButton>
+          <MyButton onPress={()=> this.passingToOrder(item)}>{item.name}</MyButton>
         </View>
       )
     };
 
     passingToOrder = (item) => {
       firebase.database().ref('order/').set({
-        user_id: '',
+        user_id: this.props.user.email,
         Destination: item.name,
         PICKUP_long: item.long,
         PICKUP_lat: item.lat,
@@ -72,3 +72,11 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
     },
   });
+
+
+  const mapStateToProps = state => {
+    console.log(state);
+    return {user: state.user};
+  }
+  
+  export default connect(mapStateToProps)(Clinics);

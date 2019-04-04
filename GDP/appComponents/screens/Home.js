@@ -1,21 +1,29 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import MapView from 'react-native-maps'
+import { Constants, Location, Permissions } from 'expo';
+
 
 import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
 export default class App extends React.Component {
-    static navigationOptions = {
-        title: 'Home',
-        headerRight: (
-          <Button
-            onPress={() => alert('ما سويناه للحين')}
-            title="Profile"
-            color="#000"
-          />
-        ),
+  static navigationOptions = (context)=> ({
+    title: 'Home',
+    headerRight: (
+      <Button
+        onPress={() => context.navigation.navigate("Profile") }
+        title="Profile"
+        color="#000"
+      />
+    ),
+    headerLeft: (
+      <View></View>
+    ),
+});
+    navigateToProfile = () => {
+      this.props.navigation.navigate('Service')
     };
     navigateToService = () => {
       this.props.navigation.navigate('Service')
@@ -23,7 +31,7 @@ export default class App extends React.Component {
     emergency = () => {
       firebase.database().ref('order/').set({
         user_id: '',
-        PICKUP_long: JSON.stringify(position.coords.longitude),
+        PICKUP_long: '',
         PICKUP_lat: '',
 
       }).then(() => { });
@@ -41,6 +49,25 @@ export default class App extends React.Component {
         </MapView>
       </View>
     );
+  }
+
+  componentDidMount() {
+    console.log('Component did mount');
+    this.getCurrentPosition();
+  }
+
+  getCurrentPosition() {
+    try{
+      navigator.geolocation.getCurrentPosition((location)=> {
+        console.log(location.coords.latitude);
+        console.log(location.coords.longitude);
+      },(error)=>{
+        console.log(error);
+      });
+    } catch(e){
+      console.log(e.message);
+    }
+  
   }
 }
 
