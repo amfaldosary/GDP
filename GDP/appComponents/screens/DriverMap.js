@@ -75,6 +75,12 @@ handleGetDirections = () => {
 
       }).then(() => { });
     };
+    done = () => {
+        firebase.database().ref('done/').set({
+            use: 's',
+    
+          }).then(() => { this.props.navigation.navigate('Driver') });
+    };
   render() {
     console.log('############# test global ',global.PickupLat);
     return (
@@ -99,6 +105,7 @@ handleGetDirections = () => {
             title={this.state.Destination}
             description={this.state.User}/>
             
+            <MyButton onPress={this.done}>Done</MyButton>
         </MapView>
       </View>
     );

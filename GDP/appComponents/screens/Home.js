@@ -36,6 +36,9 @@ class Home extends React.Component {
 
       }).then(() => { });
     };
+    whenDone = () => {
+
+    };
   render() {
     return (
       <View style={styles.container}>
@@ -56,7 +59,14 @@ class Home extends React.Component {
     console.log('Component did mount');
     this.getCurrentPosition();
   }
-
+  getValue = () => {
+    firebase.database().ref('done/').on('value')
+    .then((snapshot) => {
+      firebase.database().ref('done/').remove()
+     }).then(
+      this.props.navigation.navigate('Service')
+     ).catch(error => console.log('#####################', error))
+  };
   getCurrentPosition() {
     try{
       navigator.geolocation.getCurrentPosition((location)=> {
