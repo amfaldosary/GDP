@@ -58,9 +58,10 @@ class Home extends React.Component {
   componentDidMount() {
     console.log('Component did mount');
     this.getCurrentPosition();
+    this.getValue();
   }
   getValue = () => {
-    firebase.database().ref('done/').on('value')
+    firebase.database().ref('done/').once('value')
     .then((snapshot) => {
       firebase.database().ref('done/').remove()
      }).then(
