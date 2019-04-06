@@ -10,6 +10,7 @@ import Hospitals from '../screens/Hospitals';
 import Clinics from '../screens/Clinics';
 import Pharmacy from '../screens/Pharmacy';
 import Profile from '../screens/Profile';
+import DriverMap from '../screens/DriverMap';
 
 const AppNavigator = createStackNavigator({
     Login: { screen: Login },
@@ -21,6 +22,8 @@ const AppNavigator = createStackNavigator({
     Clinics: { screen: Clinics },
     Pharmacy: { screen: Pharmacy },
     Profile: { screen: Profile },
+    DriverMap: { screen: DriverMap },
+    
   });
   
   export default createAppContainer(AppNavigator);

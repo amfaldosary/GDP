@@ -36,8 +36,8 @@ class Hospitals extends React.Component {
 
     passingToOrder = (item) => {
       console.log(item);
-      firebase.database().ref('order/').set({
-        user_id: this.props.user.email,
+      firebase.database().ref('order/002').set({
+        user_id: 'Hospital',
         Destination: item.name,
         PICKUP_long: item.long,
         PICKUP_lat: item.lat,
