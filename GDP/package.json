@@ -19,6 +19,7 @@
     "react-native-google-maps-directions": "^2.0.0",
     "react-native-maps": "^0.23.0",
     "react-native-maps-navigation": "^0.0.14",
+    "react-native-modal-dropdown": "^0.6.2",
     "react-navigation": "^3.3.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",

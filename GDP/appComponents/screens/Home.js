@@ -61,7 +61,7 @@ class Home extends React.Component {
     try{
       navigator.geolocation.getCurrentPosition((location)=> {
         firebase.database().ref('order/001/').set({
-          user_id: this.props.user.email,
+          user_id: this.props.user.displayName,
           Destination: 'customer location',
           PICKUP_long: location.coords.longitude,
           PICKUP_lat: location.coords.latitude,
