@@ -25,7 +25,7 @@ export default class App extends React.Component {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
               //TODO: Save User to Redux
-              firebase.database().ref('users/002').set(
+              firebase.database().ref('users/').push(
                 {
                   Fname: this.state.Fname,
                   Lname: this.state.Lname,
@@ -33,7 +33,27 @@ export default class App extends React.Component {
                   email: this.state.email,
                 }
               ).then(() => {
-                this.props.navigation.navigate('Information')
+                firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+          .then(credential => {
+            if (credential) {
+              console.log('default app user ->', credential.user.toJSON());
+              //TODO: Save User to Redux
+              //TODO: navigate to Home
+              if(this.state.email === 'driver@app.com'){
+                this.props.navigation.navigate('Driver')
+              }else{
+                this.props.navigation.navigate('Home')
+              }
+            }
+          }).catch(function(error) {
+            console.log(error);
+            //TODO: add alert for errors.
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(error.message);
+             
+          });
               });
               
             }
@@ -55,15 +75,15 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Text style={styles.text}></Text>
         <TextInput
-          placeholder={"first name"}
+          placeholder={"First Name"}
           onChangeText={(Fname) => this.setState({ Fname: Fname }) }
         />
         <TextInput
-          placeholder={"Lname"}
+          placeholder={"Last Name"}
           onChangeText={(Lname) => this.setState({ Lname: Lname }) }
         />
         <TextInput
-          placeholder={"Phone number"}
+          placeholder={"Phone Number"}
           onChangeText={(Phone) => this.setState({ Phone: Phone }) }
         />
         <TextInput
@@ -80,7 +100,7 @@ export default class App extends React.Component {
           secureTextEntry={true}
           onChangeText={(password2) => this.setState({ password2: password2 })} 
         />
-        <Button onPress={this.navigateToHome}>register</Button>
+        <Button onPress={this.navigateToHome}>Register</Button>
       </View>
     );
   }
@@ -89,11 +109,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eff',
+    backgroundColor: '#964d4d',
     alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'stretch',
-  },
+    alignItems: 'stretch',},
   text: {
     paddingTop: 5,
     alignSelf: 'center',
