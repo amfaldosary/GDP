@@ -2801,6 +2801,11 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+geolib@^2.0.24:
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/geolib/-/geolib-2.0.24.tgz#eb3d7fbc65f5ea3354a5af6054563ebe9f33e5f4"
+  integrity sha512-NR0AyYyEnGrFS9JvSFmmotQDxVCORJgDHdvBwSatxl5aHarOLMh3KuGI83bCvCfObjfoEiDe8Ung8GGLGAtthw==
+
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
@@ -4642,6 +4647,20 @@ react-native-gesture-handler@^1.0.16, react-native-gesture-handler@~1.0.14:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-google-maps-directions@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-google-maps-directions/-/react-native-google-maps-directions-2.0.0.tgz#80912774722e558880fc33fe19a419bb974754c1"
+  integrity sha512-7nrb2AkRbNdf5lR/rnGTRTKbPto4mI+N+1MZfn8WsARYhQA6G6afTc9jF0qD5PvSFVYsw1pHE6WHRK2mI3Htjg==
+
+react-native-maps-navigation@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-native-maps-navigation/-/react-native-maps-navigation-0.0.14.tgz#f51bada3269ca81ea256fb6201a04037441a5488"
+  integrity sha512-B2mDzyjHdjzelXtI/ovPysrbVq/M5vjmYDWdmHj3w8j93n//zpVMICLGurz390kysdvxjxxs/zAN2RlZmbkq/g==
+  dependencies:
+    geolib "^2.0.24"
+    prop-types "^15.6.2"
+    react-native-optiongroup "^0.0.7"
+
 react-native-maps@^0.23.0:
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.23.0.tgz#edbfdcad0e42190627eb1c8067eaba5965c8f81e"
@@ -4650,6 +4669,14 @@ react-native-maps@^0.23.0:
 react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
+
+react-native-optiongroup@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-optiongroup/-/react-native-optiongroup-0.0.7.tgz#05144c577dae849efa7877002df8546836503b47"
+  integrity sha512-y1uqlgzqId/YNSooHSBVM5MkFnrhnRKK/0Vjumoh/Pk7EjB7P2bFYaq4/9NJpH9XpJuGcIickmt62Rk3kzSUHg==
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
 
 react-native-reanimated@1.0.0-alpha.10:
   version "1.0.0-alpha.10"

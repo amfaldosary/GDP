@@ -1,69 +1,116 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import MapView from 'react-native-maps'
-
-import MyButton from '../components/Button';
-import TextInput from '../components/TextInput';
+import { StyleSheet, FlatList, Text, View, TouchableOpacity, ScrollView, Button} from 'react-native';
+import {connect} from 'react-redux';
 import firebase from '../../Firebase';
+import MyButton from '../components/Button';
 
-export default class App extends React.Component {
-  static navigationOptions = (context)=> ({
-    title: 'Driver',
-    headerRight: (
-      <Button
-        onPress={() => context.navigation.navigate("Profile") }
-        title="Profile"
-        color="#000"
-      />
-    ),
+class Driver extends React.Component {
+  static navigationOptions = {
+    title: 'Orders',
     headerLeft: (
       <View></View>
     ),
-});
-    navigateToService = () => {
-      this.props.navigation.navigate('Service')
+};
+    constructor(props) {
+      super(props);
+          global.PickupLat = 0;
+          global.PickupLong = 0;
+          global.PickupDestination = '';
+          global.PickupUser = '';
+          global.Lat = 0;
+          global.Long = 0;
+          global.Destination = '';
+          global.User = '';
+
+      this.renderListItem = (item) => {
+        //console.log('################## renderListItem')
+        if(item.Destination === 'customer location'){
+          global.PickupLat = item.PICKUP_lat;
+          global.PickupLong = item.PICKUP_long;
+          global.PickupDestination = item.Destination;
+          global.PickupUser = item.user_id;
+        }else{
+          global.Lat = item.PICKUP_lat;
+          global.Long = item.PICKUP_long;
+          global.Destination = item.Destination;
+          global.User = item.user_id;
+        }
+  
+        return (
+          <View>
+            <MyButton onPress={this.navigateToDriverMap}>{global.Destination}</MyButton>
+          </View>
+        )
+      };
+      this.state = {
+        Clinics: [],
+        loaded: false
+      };
+
+      //this.getValue()
+    }
+    navigateToDriverMap = () => {
+      this.props.navigation.navigate('DriverMap')
     };
-    emergency = () => {
-      firebase.database().ref('order/').once('value' ,function (snapshot){
-        alert(snapshot.user_id);
-        console.log(snapshot.val());
+    getValue = () => {
+      firebase.database().ref('order/').once('value')
+      .then((snapshot) => {
+      var ClinicsArray = [];
+  
+       snapshot.forEach((item) => {
+        ClinicsArray.push(item.val())
+         });
+         this.setState({Clinics: ClinicsArray, loaded: true})
+       })
+       .catch(error => console.log('#####################', error))
+    };
+
+    
+
+    passingToOrder = (item) => {
+      firebase.database().ref('order/001').set({
+        user_id: this.props.user.email,
+        Destination: item.name,
+        PICKUP_long: item.long,
+        PICKUP_lat: item.lat,
       }).then(() => {
-        firebase.database().ref('order/').remove();
+        console.log('####### passed');
       });
     };
-  render() {
-    // // firebase
-    // let placesRef = firebase.database().ref("places/");
-    // console.log("#####");
-    // console.log(placesRef);
-    // console.log("#####");
-    // placesRef.once("value").then(function(snapshot) {
-    //   var key = snapshot
-    //   console.log(key);
-    // });
-    
-    return (
-      <View style={styles.container}>
-        <MapView style={styles.map}
-          followsUserLocation
-          showsUserLocation>
-          <MyButton onPress={this.emergency}>get emergency</MyButton>
-          </MapView>
-      </View>
-    );
+
+  componentDidMount() {
+    console.log('Component did mount');
+    this.getValue();
   }
-}
+    render() {
+      console.log('############# test global ',global.PickupLat);
+        return (
+            <ScrollView style={styles.container}>
+                <FlatList
+                  data={this.state.Clinics}
+                  renderItem={({item}) => this.renderListItem(item)}
+                  keyExtractor={(item, index) => item.name}
+                />
+            </ScrollView>
+        );
+      }
+    }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  text: {
-    alignSelf: 'center',
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#eff',
+    },
+    text: {
+      paddingTop: 5,
+      alignSelf: 'center',
+    },
+  });
+
+
+  const mapStateToProps = state => {
+    console.log(state);
+    return {user: state.user};
+  }
+  
+  export default connect(mapStateToProps)(Driver);

@@ -25,6 +25,7 @@ export function login (email, password) {
           }
         }).catch(function(error) {
           console.log(error);
+          alert(error);
         });
     }
   

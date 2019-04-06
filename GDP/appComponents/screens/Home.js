@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import MapView from 'react-native-maps'
 import { Constants, Location, Permissions } from 'expo';
-
+import {connect} from 'react-redux';
 
 import MyButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import firebase from '../../Firebase';
 
-export default class App extends React.Component {
+class Home extends React.Component {
   static navigationOptions = (context)=> ({
     title: 'Home',
     headerRight: (
@@ -29,7 +29,7 @@ export default class App extends React.Component {
       this.props.navigation.navigate('Service')
     };
     emergency = () => {
-      firebase.database().ref('order/').set({
+      firebase.database().ref('order/from/').set({
         user_id: '',
         PICKUP_long: '',
         PICKUP_lat: '',
@@ -42,6 +42,7 @@ export default class App extends React.Component {
         <MapView style={styles.map}
           followsUserLocation
           showsUserLocation>
+          
           <View>
             <MyButton onPress={this.navigateToService}>Service</MyButton>
             <MyButton onPress={this.emergency}>Emergency</MyButton>
@@ -59,6 +60,14 @@ export default class App extends React.Component {
   getCurrentPosition() {
     try{
       navigator.geolocation.getCurrentPosition((location)=> {
+        firebase.database().ref('order/001/').set({
+          user_id: this.props.user.email,
+          Destination: 'customer location',
+          PICKUP_long: location.coords.longitude,
+          PICKUP_lat: location.coords.latitude,
+        }).then(() => {
+          console.log('####### passed');
+        });
         console.log(location.coords.latitude);
         console.log(location.coords.longitude);
       },(error)=>{
@@ -95,3 +104,11 @@ const styles = StyleSheet.create({
     width: '100%',
   }
 });
+
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {user: state.user};
+}
+
+export default connect(mapStateToProps)(Home);
