@@ -26,10 +26,13 @@ const styles = StyleSheet.create({
     },
     textInput: {
         backgroundColor: '#fff',
-        height: 44,
-        borderColor: '#979797',
-        borderWidth: 0.2,
-        marginBottom: 10,
-        fontSize: 25,
+        height: 35,
+        width:250,
+        left: 70,
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 12,
+        marginBottom: 15,
+        fontSize: 14,
     },
    });

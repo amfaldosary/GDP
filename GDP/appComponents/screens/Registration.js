@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity , ScrollView} from 'react-native';
 
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
@@ -72,35 +72,44 @@ export default class App extends React.Component {
     };
   render() {
     return (
+
       <View style={styles.container}>
-        <Text style={styles.text}></Text>
+
+        <Text style={styles.text1}>First Name </Text>
         <TextInput
-          placeholder={"first name"}
+          placeholder={"Your First Name"}
           onChangeText={(Fname) => this.setState({ Fname: Fname }) }
         />
+        <Text style={styles.text1}>Last Name </Text>
         <TextInput
-          placeholder={"Lname"}
+          placeholder={"Your Last Name"}
           onChangeText={(Lname) => this.setState({ Lname: Lname }) }
         />
+        <Text style={styles.text1}>Phone Number </Text>
         <TextInput
-          placeholder={"Phone number"}
+          placeholder={"Your Phone Number"}
           onChangeText={(Phone) => this.setState({ Phone: Phone }) }
         />
+        <Text style={styles.text1}>Email </Text>
         <TextInput
-          placeholder={"Email"}
+          placeholder={"Your Email"}
           onChangeText={(email) => this.setState({ email: email }) }
         />
+          <Text style={styles.text1}>Password</Text>
         <TextInput
-          placeholder={"Password"}
+          placeholder={"Your Password"}
           secureTextEntry={true}
           onChangeText={(password) => this.setState({ password: password })} 
         />
+        <Text style={styles.text1}>Confirm Password </Text>
         <TextInput
           placeholder={"Confirm Password"}
           secureTextEntry={true}
           onChangeText={(password2) => this.setState({ password2: password2 })} 
         />
-        <Button onPress={this.navigateToHome}>register</Button>
+        <Button onPress={this.navigateToHome}>Register</Button>
+
+
       </View>
     );
   }
@@ -109,7 +118,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eff',
+    backgroundColor: '#964d4d',
     alignItems: 'center',
     justifyContent: 'center',
     alignItems: 'stretch',
@@ -118,4 +127,10 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     alignSelf: 'center',
   },
+  text1: {
+    left:75,
+    fontSize: 18,
+    color:'#fff'
+
+ },
 });
