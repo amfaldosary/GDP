@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   Bu: {
 
     fontSize: 25,
-    paddingBottom: 12,
+    paddingBottom: 24,
     paddingTop: 12,
   },
   text: {
