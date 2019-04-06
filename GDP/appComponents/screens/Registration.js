@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
@@ -25,14 +25,17 @@ export default class App extends React.Component {
             if (credential) {
               console.log('default app user ->', credential.user.toJSON());
               //TODO: Save User to Redux
-              firebase.database().ref('users/').push(
-                {
-                  Fname: this.state.Fname,
-                  Lname: this.state.Lname,
-                  Phone: this.state.Phone,
-                  email: this.state.email,
-                }
-              ).then(() => {
+              var user = firebase.auth().currentUser;
+
+              user.updateProfile({
+                displayName: this.state.Fname,
+                phoneNumber: this.state.Phone
+              }).then(function() {
+                // Update successful.
+                console.log('updated user data')
+              }, function(error) {
+                alert(error)
+              }).then(() => {
                 firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
           .then(credential => {
             if (credential) {
