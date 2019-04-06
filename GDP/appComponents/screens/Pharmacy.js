@@ -47,6 +47,8 @@ class Pharmacies extends React.Component {
         PICKUP_lat: item.lat,
       }).then(() => {
         console.log('####### passed');
+        alert('order sent')
+        this.props.navigation.navigate('Home')
       });
     };
     render() {
